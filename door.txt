@@ -1,0 +1,63 @@
+--CHÀO
+
+local bottom = "https://raw.githubusercontent.com/TeamNullFire/NullFire/"
+đại diện cục bộ = dưới cùng.."chính/Trò chơi/"
+
+cục bộ s, e = pcall(function()
+	trả về getgenv().request({
+		URL = bottom.."refs/heads/main/jhbfgs.json",
+		Phương thức = "GET",
+		Thân = nil,
+		Tiêu đề = {}
+	})
+kết thúc)
+
+local suc,easd = pcall(function()
+	trả về getgenv().request({
+		Url = "https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Core/Data/SupportedGames.json",
+		Phương thức = "GET",
+		Thân = nil,
+		Tiêu đề = {}
+	})
+kết thúc)
+
+cục bộ được tìm thấy = sai
+
+
+game.StarterGui:SetCore("SendNotification", {Title="Bằng cách sử dụng, bạn đồng ý"; Text="https://nullfire.pages.dev/privacy"; Duration=3;})
+
+nếu s thì
+	dữ liệu cục bộ = e.Body
+	local dfnasdb = game:GetService("HttpService"):JSONDecode(data)
+	
+	shared.dfnasdb = dfnasdb
+	
+	for i,v in pairs(dfnasdb) do
+		nếu v.GameId == game.GameId thì
+			đã tìm thấy = đúng
+			getgenv().nullfireloadergivemethegameiminpls = i
+			loadstring(game:HttpGet(rep..i..".lua"))()
+			phá vỡ
+		kết thúc
+	kết thúc
+
+	nếu thành công mà không tìm thấy thì
+		local cherrydata = game.HttpService:JSONDecode(easd.Body)
+		for i,v in cherrydata do
+			if typeof(v) == "table" and table.find(v, game.PlaceId) then
+				đã tìm thấy = đúng
+				getgenv().FireHubLoaded = false
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Null-Fire/main/Loader"))()
+				phá vỡ
+			kết thúc
+		kết thúc
+	nếu không thành công thì
+		cảnh báo("không thể lấy dữ liệu được hỗ trợ của cherry")
+	kết thúc
+
+	nếu không tìm thấy thì
+		loadstring(game:HttpGet(rep.."Universal.lua"))()
+	kết thúc
+khác
+	cảnh báo("không thể lấy dữ liệu được hỗ trợ "..e)
+kết thúc
